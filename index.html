@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form and Table Example</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+  
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #data-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 300px;
+        }
+
+        #data-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        #data-form input,
+        #data-form textarea {
+            width: calc(100% - 30px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: block;
+            font-size: 14px;
+            background-color: #f9f9f9;
+        }
+
+        #data-form input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table th,
+        table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Form and Table Example</h2>
+    <form id="data-form">
+        <label for="fname">First Name:</label>
+        <input type="text" id="fname" name="fname" required>
+        <label for="lname">Last Name:</label>
+        <input type="text" id="lname" name="lname" required>
+        <label for="address">Address:</label>
+        <textarea id="address" name="address" required></textarea>
+        <label for="pin">Pincode:</label>
+        <input type="text" id="pin" name="pin" required>
+        <label for="gen">Gender:</label>
+        <input type="radio" id="male" name="gen" value="Male"> Male
+        <input type="radio" id="female" name="gen" value="Female"> Female
+        <button type="submit" class="submit-btn">Submit</button>
+    </form>
+
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+
+    <script>
+ 
+        document.getElementById('data-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const fname = document.getElementById('fname').value;
+            const lname = document.getElementById('lname').value;
+            const address = document.getElementById('address').value;
+            const pin = document.getElementById('pin').value;
+            const gender = document.querySelector('input[name="gen"]:checked').value;
+
+            const table = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+            const newRow = table.insertRow(table.rows.length);
+
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+
+            cell1.innerHTML = fname;
+            cell2.innerHTML = lname;
+            cell3.innerHTML = address;
+            cell4.innerHTML = pin;
+            cell5.innerHTML = gender;
+
+            document.getElementById('data-form').reset();
+        });
+    </script>
+</body>
+
+</html>
